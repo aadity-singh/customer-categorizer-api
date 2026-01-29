@@ -177,14 +177,7 @@ FastAPI auto‑generated docs:
 
 ### 📸 Screenshots
 
-> Add these images inside the `screenshots/` folder
-
-```md
-![Predict API](screenshots/predict_api.png)
-![Explain API](screenshots/explain_api.png)
-```
-
----
+link: https://github.com/aadity-singh/customer-categorizer-api/tree/main/screenshots
 
 ## 7️⃣ Run Locally (Without Docker)
 
@@ -199,8 +192,6 @@ pip install -r requirements.txt
 # 3. Start API
 uvicorn src.app:app --reload
 ```
-
----
 
 ## 8️⃣ Run with Docker 🐳
 
