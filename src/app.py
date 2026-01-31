@@ -5,7 +5,6 @@ from typing import Optional
 from src.predict import predict_customer
 from src.shap_explainer import explain_customer
 
-
 app = FastAPI(title="Customer Categorizer API")
 
 
@@ -35,7 +34,6 @@ class CustomerInput(BaseModel):
     NumStorePurchases: int
     NumWebVisitsMonth: int
 
-    # ✅ OPTIONAL campaign-related fields (default = 0)
     AcceptedCmp1: Optional[int] = 0
     AcceptedCmp2: Optional[int] = 0
     AcceptedCmp3: Optional[int] = 0

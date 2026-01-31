@@ -1,9 +1,12 @@
 import shap
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
 from src.model_loader import load_model
 from src.features import build_features
+from src.db import explanations_col   # ✅ ADD THIS
+
 
 # Load model once
 _model = load_model()
@@ -42,7 +45,6 @@ def explain_customer(input_data: dict):
     predicted_class = _classifier.predict(X)[0]
     class_index = list(_classifier.classes_).index(predicted_class)
 
-    # ✅ CORRECT extraction for 3D SHAP output
     # shape: (1, n_features, n_classes)
     shap_for_class = shap_values[0, :, class_index]
 
@@ -60,5 +62,18 @@ def explain_customer(input_data: dict):
         )
     )
 
-    # Optional: return only top 10
-    return dict(list(explanation.items())[:10])
+    # 9️⃣ Keep top 10 only
+    top_explanation = dict(list(explanation.items())[:10])
+
+    # 🔟 Save to MongoDB ✅
+    explanations_col.insert_one({
+        "input": input_data,
+        "prediction": predicted_class,
+        "explanation": {
+            k: float(v) for k, v in top_explanation.items()
+        },
+        "model": "customer_categorizer_v1",
+        "created_at": datetime.utcnow()
+    })
+
+    return top_explanation
