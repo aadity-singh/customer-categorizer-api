@@ -47,6 +47,21 @@ This project demonstrates **much more than model training**:
 
 ---
 
+## 🗄️ MongoDB Integration
+
+The API is integrated with **MongoDB Atlas** to persist real-time results.
+
+- Stores **customer predictions** in `predictions` collection
+- Stores **SHAP explanations** in `explanations` collection
+- Uses environment variables for secure configuration (`.env`)
+- Designed for scalable, production-ready data storage
+
+This enables:
+- Prediction history tracking
+- Auditability of model decisions
+- Future analytics & monitoring
+
+
 ## 3️⃣ Project Architecture
 
 customer-categorizer-project/
