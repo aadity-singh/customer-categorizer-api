@@ -47,16 +47,31 @@ This project demonstrates **much more than model training**:
 
 ---
 
+## 🗄️ MongoDB Integration
+
+The API is integrated with **MongoDB Atlas** to persist real-time results.
+
+- Stores **customer predictions** in `predictions` collection
+- Stores **SHAP explanations** in `explanations` collection
+- Uses environment variables for secure configuration (`.env`)
+- Designed for scalable, production-ready data storage
+
+This enables:
+- Prediction history tracking
+- Auditability of model decisions
+- Future analytics & monitoring
+
+
 ## 3️⃣ Project Architecture
 
-```text
 customer-categorizer-project/
 │
 ├── data/                     # Raw & processed datasets
 ├── models/                   # Trained ML model (.pkl)
 ├── screenshots/              # API & Swagger screenshots
-├── src/
+├── src/                      # Application source code
 │   ├── app.py                # FastAPI app entrypoint
+│   ├── db.py                 # MongoDB connection logic
 │   ├── model_training.py     # Model training pipeline
 │   ├── model_loader.py       # Model loading logic
 │   ├── feature_engineering.py# Feature creation
@@ -70,20 +85,36 @@ customer-categorizer-project/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-```
 
 ---
 
 ## 4️⃣ Tech Stack
 
-| Layer          | Tools                       |
-| -------------- | --------------------------- |
-| Language       | Python                      |
-| ML             | Scikit‑learn, NumPy, Pandas |
-| API            | FastAPI, Uvicorn            |
-| Explainability | SHAP                        |
-| DevOps         | Docker                      |
-| Deployment     | Render (Docker‑based)       |
+| Layer          | Tools                                          |
+| -------------- | ---------------------------------------------- |
+| Language       | Python                                         |
+| ML             | Scikit-learn, NumPy, Pandas                    |
+| API            | FastAPI, Uvicorn                               |
+| Database       | MongoDB (Atlas)                                |
+| Config         | python-dotenv (.env based configuration)       |
+| Explainability | SHAP                                           |
+| DevOps         | Docker                                         |
+| Deployment     | Render (Docker-based)                          |
+
+
+---
+
+## Environment Variables
+
+This project uses **dotenv** for secure configuration.
+
+Create a `.env` file in the project root:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+MONGODB_DB=customer_intelligence
+PREDICTIONS_COLLECTION=predictions
+EXPLANATIONS_COLLECTION=explanations
 
 ---
 
@@ -190,7 +221,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. Start API
-uvicorn src.app:app --reload
+python -m uvicorn src.app:app --reload
 ```
 
 ## 8️⃣ Run with Docker 🐳
@@ -213,6 +244,14 @@ docker run -p 8000:8000 customer-categorizer
 4. Set port: `8000`
 5. Deploy 🚀
 
+---
+
+## Data Persistence
+
+- Predictions stored in MongoDB
+- SHAP explanations stored separately
+- Enables monitoring, analytics, and auditing
+  
 ---
 
 ## 🔟 Model Performance
