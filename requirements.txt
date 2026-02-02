@@ -1,24 +1,26 @@
 # ---------------- Core ----------------
-pandas>=1.5
-numpy>=1.23
+pandas==1.5.3
+numpy==1.23.5
 
 # ------------- Machine Learning -------------
-scikit-learn>=1.2
-joblib>=1.2
+scikit-learn==1.2.2
+joblib==1.2.0
 
 # ------------- API / Server -------------
-fastapi>=0.104
-uvicorn[standard]>=0.23
+fastapi==0.104.1
+uvicorn[standard]==0.23.2
 
 # ------------- Model Explainability -------------
-shap>=0.44
-numba>=0.57      # REQUIRED by SHAP (very important)
-cloudpickle>=2.2
+shap==0.44.1
+numba==0.57.1
+cloudpickle==2.2.1
 
 # ------------- Data validation -------------
-pydantic>=2.0
+pydantic==2.5.3
 
 # ------------- Optional / Utilities -------------
-python-multipart>=0.0.6
+python-multipart==0.0.6
 
-pymongo>=4.6
+# ------------- Database -------------
+pymongo==4.6.1
+
